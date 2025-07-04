@@ -1,0 +1,1 @@
+# Portfolio Erik Proença\n\nPortfolio profissional desenvolvido com React + TypeScript + TailwindCSS\n\n## Demo\nVeja o portfolio em funcionamento!\n\n## Tecnologias\n- React 19\n- TypeScript\n- TailwindCSS V4\n- Vite\n- ShadCN UI
