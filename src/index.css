@@ -129,15 +129,15 @@
 
 @layer utilities {
   .premium-btn {
-    @apply bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
+    @apply bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-6 py-2.5 sm:px-8 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg min-h-[44px] text-sm sm:text-base;
   }
   
   .primary-btn {
-    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-2.5 sm:px-8 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg min-h-[44px] text-sm sm:text-base;
   }
   
   .section-padding {
-    @apply py-20 px-4 sm:px-6 lg:px-8;
+    @apply py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8;
   }
   
   .container-premium {
@@ -149,7 +149,7 @@
   }
   
   .card-premium {
-    @apply bg-card/80 backdrop-blur-sm border-border/60 shadow-xl hover:shadow-2xl transition-all duration-300;
+    @apply bg-card/80 backdrop-blur-sm border-border/60 shadow-xl hover:shadow-2xl transition-all duration-300 p-4 sm:p-6;
     box-shadow: 0 4px 24px -4px oklch(0.35 0.08 220 / 0.1),
                 0 2px 8px -2px oklch(0.35 0.08 220 / 0.05);
   }
@@ -189,11 +189,117 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+/* Cursor pointer para todos os elementos interativos */
+button,
+a,
+[role="button"],
+.cursor-pointer,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+select,
+label[for],
+[tabindex]:not([tabindex="-1"]),
+[onclick] {
+  cursor: pointer;
+}
+
+/* Cursor pointer para elementos específicos do projeto */
+.premium-btn,
+.card-premium,
+[data-slot="form-control"],
+.group {
+  cursor: pointer;
+}
+
+/* Melhorias para mobile */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
   }
-  body {
-    @apply bg-background text-foreground;
+  
+  /* Botões com área de toque adequada */
+  button, 
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Inputs com altura adequada para mobile */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  textarea,
+  select {
+    min-height: 44px;
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+  
+  /* Espaçamento reduzido para mobile */
+  .section-padding {
+    padding: 2rem 1rem;
+  }
+  
+  /* Cards com padding menor em mobile */
+  .card-premium {
+    padding: 1rem;
+  }
+  
+  /* Texto menor em mobile */
+  .stats-number {
+    font-size: 2.5rem;
+  }
+  
+  /* Hero section - ajuste para evitar corte da imagem */
+  #home {
+    padding-top: 5rem; /* Mais espaço do header */
+  }
+  
+  /* Imagem do hero - melhor posicionamento em mobile */
+  .hero-image {
+    object-position: center 15%; /* Mostra um pouco mais da parte superior */
+    object-fit: cover;
+  }
+  
+  /* Container da imagem hero mais compacto em mobile */
+  .hero-container {
+    width: 16rem; /* w-64 */
+    height: 20rem; /* h-80 */
+    max-width: 90vw; /* Não ultrapassa a largura da tela */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Espaçamento ainda menor para telas muito pequenas */
+  .section-padding {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .container-premium {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Botões full width em telas pequenas quando necessário */
+  .mobile-full-width {
+    width: 100%;
+  }
+  
+  /* Para telas muito pequenas, usar object-contain para garantir que a imagem não seja cortada */
+  .hero-image {
+    object-fit: contain;
+    object-position: center;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  }
+  
+  /* Container ainda menor para telas tiny */
+  .hero-container {
+    width: 14rem; /* Menor que w-64 */
+    height: 18rem; /* Menor que h-80 */
+    max-width: 85vw;
   }
 }

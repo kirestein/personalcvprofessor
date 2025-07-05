@@ -1,30 +1,31 @@
 (function () {
-  // Create the built by scout tag
+  // Create the built by St3 T3ch tag
   const tag = document.createElement("div");
-  tag.id = "built-by-scout";
+  tag.id = "built-by-st3tech";
   tag.innerHTML =
-    '<a href="https://scout.new" target="_blank" rel="noopener noreferrer">Built by Scout</a>';
+    '<a href="https://st3tech.com.br" target="_blank" rel="noopener noreferrer">Built by St3 T3ch</a>';
 
   // Style the tag
   const style = document.createElement("style");
   style.textContent = `
-    #built-by-scout {
+    #built-by-st3tech {
       position: fixed;
       bottom: 20px;
-      right: 20px;
+      left: 20px;
       background: rgba(0, 0, 0, 0.8);
       color: white;
       padding: 8px 16px;
       border-radius: 20px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 14px;
-      z-index: 9999;
+      z-index: 30;
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: all 0.2s ease;
       opacity: 0;
       animation: fadeIn 0.3s ease forwards;
       animation-delay: 0.5s;
+      cursor: pointer;
     }
     
     @keyframes fadeIn {
@@ -33,30 +34,31 @@
       }
     }
     
-    #built-by-scout:hover {
+    #built-by-st3tech:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       background: rgba(0, 0, 0, 0.9);
     }
     
-    #built-by-scout a {
+    #built-by-st3tech a {
       color: white;
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 6px;
+      cursor: pointer;
     }
     
-    #built-by-scout a::before {
-      content: '✨';
+    #built-by-st3tech a::before {
+      content: '🚀';
       font-size: 16px;
     }
     
     /* Mobile responsive */
     @media (max-width: 640px) {
-      #built-by-scout {
+      #built-by-st3tech {
         bottom: 10px;
-        right: 10px;
+        left: 10px;
         font-size: 12px;
         padding: 6px 12px;
       }

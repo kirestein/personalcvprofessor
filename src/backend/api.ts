@@ -17,6 +17,15 @@ interface TodoItem {
   createdAt: string;
 }
 
+interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  createdAt: string;
+}
+
 // Mock data - in production, you'd use a database like D1 or KV
 const mockUsers: User[] = [
   { id: "1", name: "Alice Johnson", email: "alice@example.com", createdAt: "2024-01-01" },
@@ -27,6 +36,8 @@ const mockTodos: TodoItem[] = [
   { id: "1", userId: "1", title: "Deploy to Cloudflare", completed: true, createdAt: "2024-01-01" },
   { id: "2", userId: "1", title: "Add authentication", completed: false, createdAt: "2024-01-02" },
 ];
+
+const mockContactMessages: ContactMessage[] = [];
 
 // Helper function for CORS headers
 function corsHeaders(origin: string): HeadersInit {
@@ -163,19 +174,51 @@ export default {
         );
       }
       
-      // POST /api/echo - Echo endpoint for testing
-      if (url.pathname === "/api/echo" && method === "POST") {
-        const body = await request.json();
+      // POST /api/contact - Enviar mensagem de contato
+      if (url.pathname === "/api/contact" && method === "POST") {
+        const body = await request.json() as Partial<ContactMessage>;
+        
+        // Validate input
+        if (!body.name || !body.email || !body.message) {
+          return Response.json(
+            { error: "Nome, email e mensagem são obrigatórios" },
+            { status: 400, headers: corsHeaders(origin) }
+          );
+        }
+        
+        const newMessage: ContactMessage = {
+          id: String(mockContactMessages.length + 1),
+          name: body.name,
+          email: body.email,
+          phone: body.phone || "",
+          message: body.message,
+          createdAt: new Date().toISOString(),
+        };
+        
+        // In production, you'd save to database and send email here
+        mockContactMessages.push(newMessage);
+        
+        // Simulate email sending (in production, use a service like SendGrid)
+        console.log("Nova mensagem de contato:", newMessage);
+        
         return Response.json(
           { 
-            echo: body,
-            headers: Object.fromEntries(request.headers.entries()),
-            timestamp: new Date().toISOString()
+            success: true, 
+            message: "Mensagem enviada com sucesso!",
+            id: newMessage.id 
           },
+          { status: 201, headers: corsHeaders(origin) }
+        );
+      }
+
+      // GET /api/contact - Listar mensagens de contato (para admin)
+      if (url.pathname === "/api/contact" && method === "GET") {
+        return Response.json(
+          { messages: mockContactMessages },
           { headers: corsHeaders(origin) }
         );
       }
-      
+
       // 404 for unmatched routes
       return Response.json(
         { error: "Not Found", path: url.pathname },
@@ -198,4 +241,4 @@ export default {
 //   KV: KVNamespace;          // For key-value storage
 //   BUCKET: R2Bucket;         // For file storage
 //   API_KEY: string;          // For secrets
-// } 
+// }
