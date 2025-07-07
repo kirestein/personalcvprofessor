@@ -43,7 +43,7 @@ export default function ErikPortfolio() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isContactLoading, setIsContactLoading] = useState(false);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [contactData, setContactData] = useState({ name: "", email: "", phone: "", message: "" });
