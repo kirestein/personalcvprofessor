@@ -1,11 +1,11 @@
 import emailjs from '@emailjs/browser';
 
-// Configurações do EmailJS
-const EMAILJS_SERVICE_ID = 'service_erik_portfolio';
-const EMAILJS_TEMPLATE_ID = 'template_contact_form';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Substituir pela sua chave
+// Configurações do EmailJS via variáveis de ambiente
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-const ADMIN_EMAIL = 'erik.proenca2011@gmail.com';
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'erik.proenca2011@gmail.com';
 
 export interface ContactFormData {
   name: string;

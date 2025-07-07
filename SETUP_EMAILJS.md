@@ -23,6 +23,7 @@
 **Subject:** Nova mensagem do portfólio - {{from_name}}
 
 **Content:**
+
 ```
 🔥 Nova mensagem do seu portfólio!
 
@@ -47,12 +48,21 @@ Responda diretamente para: {{reply_to}}
 
 ## Passo 5: Atualizar o Código
 
-Substitua no arquivo `src/services/contactService.ts`:
+✅ **TODAS AS CONFIGURAÇÕES JÁ FORAM APLICADAS!**
 
+As seguintes configurações foram adicionadas ao arquivo `.env`:
+- ✅ Service ID: `service_kb0vmaqc`
+- ✅ Template ID: `template_eoe4b8v`
+- ✅ Public Key: `lnJGnnt5QIqZ800Ck`
+
+O arquivo `.env` foi adicionado ao `.gitignore` para manter suas credenciais seguras.
+
+**Configuração atual no código:**
 ```typescript
-const EMAILJS_SERVICE_ID = 'SEU_SERVICE_ID_AQUI';
-const EMAILJS_TEMPLATE_ID = 'SEU_TEMPLATE_ID_AQUI';
-const EMAILJS_PUBLIC_KEY = 'SUA_PUBLIC_KEY_AQUI';
+// src/services/contactService.ts
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 ```
 
 ## ✅ Depois de Configurar

@@ -773,7 +773,7 @@ export default function ErikPortfolio() {
       
       {/* Botão WhatsApp flutuante */}
       <WhatsAppButton 
-        phoneNumber="5511986165932"
+        phoneNumber={import.meta.env.VITE_WHATSAPP_NUMBER || "5511986165932"}
         message="Olá Erik! Vim através do seu portfólio e gostaria de conversar sobre oportunidades profissionais."
       />
       
