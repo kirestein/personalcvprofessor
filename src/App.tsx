@@ -10,14 +10,14 @@ import { Separator } from "@/components/ui/separator";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { sendContactEmail } from "@/services/contactService";
 import toast, { Toaster } from 'react-hot-toast';
-import { 
-  ArrowRight, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  LogIn, 
-  User, 
-  Briefcase, 
+import {
+  ArrowRight,
+  Mail,
+  Phone,
+  MapPin,
+  LogIn,
+  User,
+  Briefcase,
   GraduationCap,
   Trophy,
   Calendar,
@@ -54,11 +54,11 @@ export default function ErikPortfolio() {
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
+
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
-    
+
     return age;
   };
 
@@ -84,24 +84,24 @@ export default function ErikPortfolio() {
   const handleContact = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsContactLoading(true);
-    
+
     // Toast de carregamento
     const loadingToast = toast.loading('Enviando mensagem...');
-    
+
     try {
       // Envia apenas para email
       const emailSent = await sendContactEmail(contactData);
-      
+
       // Remove o toast de loading
       toast.dismiss(loadingToast);
-      
+
       if (emailSent) {
         toast.success('✅ Mensagem enviada com sucesso!');
         toast('� Você receberá uma resposta em breve!', {
           icon: '👋',
           duration: 4000,
         });
-        
+
         setIsContactOpen(false);
         setContactData({ name: "", email: "", phone: "", message: "" });
       } else {
@@ -109,10 +109,10 @@ export default function ErikPortfolio() {
       }
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
-      
+
       // Remove o toast de loading
       toast.dismiss(loadingToast);
-      
+
       toast.error('❌ Erro ao enviar mensagem. Tente novamente!');
     } finally {
       setIsContactLoading(false);
@@ -144,7 +144,7 @@ export default function ErikPortfolio() {
             </div>
             <span className="text-lg sm:text-xl font-serif font-semibold text-gradient-premium">Erik Proença</span>
           </div>
-          
+
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <button onClick={() => scrollToSection('home')} className="text-sm font-medium hover:text-accent transition-colors duration-200 cursor-pointer">Início</button>
@@ -183,25 +183,25 @@ export default function ErikPortfolio() {
                   <form onSubmit={handleLogin} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-sm font-medium">Email</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        placeholder="seu@email.com" 
-                        value={loginData.email} 
-                        onChange={(e) => setLoginData({...loginData, email: e.target.value})} 
-                        required 
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="seu@email.com"
+                        value={loginData.email}
+                        onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                        required
                         className="min-h-[44px] text-base"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="password" className="text-sm font-medium">Senha</Label>
-                      <Input 
-                        id="password" 
-                        type="password" 
-                        placeholder="••••••••" 
-                        value={loginData.password} 
-                        onChange={(e) => setLoginData({...loginData, password: e.target.value})} 
-                        required 
+                      <Input
+                        id="password"
+                        type="password"
+                        placeholder="••••••••"
+                        value={loginData.password}
+                        onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                        required
                         className="min-h-[44px] text-base"
                       />
                     </div>
@@ -211,10 +211,10 @@ export default function ErikPortfolio() {
               </Dialog>
             )}
 
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="md:hidden p-2 min-h-[40px] min-w-[40px]" 
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden p-2 min-h-[40px] min-w-[40px]"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -252,11 +252,11 @@ export default function ErikPortfolio() {
                   <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1 lg:mt-2 text-muted-foreground">{currentAge} anos</span>
                 </h1>
                 <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                  Professor dedicado com paixão pela educação e desenvolvimento acadêmico. 
+                  Professor dedicado com paixão pela educação e desenvolvimento acadêmico.
                   Transformando vidas através do conhecimento e inovação pedagógica.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button className="premium-btn group text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3 min-h-[44px]" onClick={() => scrollToSection('experience')}>
                   <span>Conheça Minha Experiência</span>
@@ -267,15 +267,15 @@ export default function ErikPortfolio() {
                 </Button>
               </div>
             </div>
-            
+
             <div className="flex justify-center lg:justify-end order-first lg:order-last">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl lg:rounded-3xl blur-xl lg:blur-2xl"></div>
                 <div className="relative hero-container sm:w-72 sm:h-96 lg:w-96 lg:h-[500px] rounded-2xl lg:rounded-3xl overflow-hidden border border-border/50 bg-card shadow-2xl">
-                  <img 
-                    src="/erik-profile.jpg" 
-                    alt="Erik Proença - Professor de Matemática e Física" 
-                    className="w-full h-full hero-image object-cover object-top sm:object-center" 
+                  <img
+                    src="/erik-profile.jpg"
+                    alt="Erik Proença - Professor de Matemática e Física"
+                    className="w-full h-full hero-image object-cover object-top sm:object-center"
                   />
                 </div>
               </div>
@@ -316,11 +316,11 @@ export default function ErikPortfolio() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-xl lg:rounded-2xl blur-lg lg:blur-xl"></div>
                 <div className="relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-96 rounded-xl lg:rounded-2xl overflow-hidden shadow-2xl border border-border/50">
-                  <img src="/about-image.jpg" alt="Professor Erik em sala de aula" className="w-full h-full object-cover" />
+                  <img src="/about-image.jpeg" alt="Professor Erik em sala de aula" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
-            
+
             <div className="space-y-6 lg:space-y-8 order-last lg:order-last">
               <div className="space-y-4 lg:space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs sm:text-sm font-medium text-primary">
@@ -343,7 +343,7 @@ export default function ErikPortfolio() {
                   </p>
                 </div>
               </div>
-              
+
               <div className="space-y-3 lg:space-y-4">
                 <h3 className="text-base lg:text-lg font-medium mb-2 lg:mb-3">Idiomas</h3>
                 <div className="flex flex-wrap gap-2">
@@ -397,7 +397,7 @@ export default function ErikPortfolio() {
               <span className="block text-gradient-premium font-medium">Educacional</span>
             </h2>
           </div>
-          
+
           <div className="grid gap-6 lg:gap-8 lg:grid-cols-2">
             {/* Maple Bear Santana */}
             <Card className="card-premium">
@@ -536,7 +536,7 @@ export default function ErikPortfolio() {
               <span className="block text-gradient-premium font-medium">Educacionais</span>
             </h2>
           </div>
-          
+
           <div className="grid gap-4 sm:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <Card className="card-premium">
               <CardHeader className="pb-3 lg:pb-4">
@@ -696,51 +696,51 @@ export default function ErikPortfolio() {
                     <form onSubmit={handleContact} className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="text-sm font-medium">Nome</Label>
-                        <Input 
-                          id="name" 
-                          placeholder="Seu nome" 
-                          value={contactData.name} 
-                          onChange={(e) => setContactData({...contactData, name: e.target.value})} 
-                          required 
+                        <Input
+                          id="name"
+                          placeholder="Seu nome"
+                          value={contactData.name}
+                          onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
+                          required
                           className="min-h-[44px] text-base"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-sm font-medium">Email</Label>
-                        <Input 
-                          id="email" 
-                          type="email" 
-                          placeholder="seu@email.com" 
-                          value={contactData.email} 
-                          onChange={(e) => setContactData({...contactData, email: e.target.value})} 
-                          required 
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="seu@email.com"
+                          value={contactData.email}
+                          onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
+                          required
                           className="min-h-[44px] text-base"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="phone" className="text-sm font-medium">Telefone</Label>
-                        <Input 
-                          id="phone" 
-                          placeholder="(11) 99999-9999" 
-                          value={contactData.phone} 
-                          onChange={(e) => setContactData({...contactData, phone: e.target.value})} 
+                        <Input
+                          id="phone"
+                          placeholder="(11) 99999-9999"
+                          value={contactData.phone}
+                          onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
                           className="min-h-[44px] text-base"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="message" className="text-sm font-medium">Mensagem</Label>
-                        <Textarea 
-                          id="message" 
-                          placeholder="Sua mensagem..." 
-                          value={contactData.message} 
-                          onChange={(e) => setContactData({...contactData, message: e.target.value})} 
-                          required 
+                        <Textarea
+                          id="message"
+                          placeholder="Sua mensagem..."
+                          value={contactData.message}
+                          onChange={(e) => setContactData({ ...contactData, message: e.target.value })}
+                          required
                           className="min-h-[100px] text-base resize-none"
                         />
                       </div>
-                      <Button 
-                        type="submit" 
-                        className="w-full premium-btn text-base min-h-[44px]" 
+                      <Button
+                        type="submit"
+                        className="w-full premium-btn text-base min-h-[44px]"
                         disabled={isContactLoading}
                       >
                         {isContactLoading ? "Enviando..." : "Enviar Mensagem"}
@@ -770,15 +770,15 @@ export default function ErikPortfolio() {
           </div>
         </div>
       </footer>
-      
+
       {/* Botão WhatsApp flutuante */}
-      <WhatsAppButton 
+      <WhatsAppButton
         phoneNumber={import.meta.env.VITE_WHATSAPP_NUMBER || "5511986165932"}
         message="Olá Erik! Vim através do seu portfólio e gostaria de conversar sobre oportunidades profissionais."
       />
-      
+
       {/* Toast notifications */}
-      <Toaster 
+      <Toaster
         position="top-right"
         toastOptions={{
           duration: 4000,
